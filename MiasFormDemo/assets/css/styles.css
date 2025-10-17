@@ -1,0 +1,94 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 1s ease;
+}
+
+.splash-screen.fade-out {
+    opacity: 0;
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #343a40;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    z-index: 1000;
+}
+
+.menu .title {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 24px;
+}
+
+.menu .logo {
+    width: 40px;
+    height: 40px;
+}
+
+.hamburger {
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #343a40;
+    color: white;
+    transition: left 0.3s ease;
+    z-index: 999;
+}
+
+.side-menu.open {
+    left: 0;
+}
+
+.side-menu ul {
+    list-style-type: none;
+    padding: 20px;
+}
+
+.side-menu ul li {
+    margin: 20px 0;
+}
+
+.section {
+    padding: 60px 20px;
+    height: 100vh;
+}
+
+.section.home {
+    background-color: #f8f9fa;
+}
+
+.section.apropos {
+    background-color: #e9ecef;
+}
+
+.section.contact {
+    background-color: #dee2e6;
+}

@@ -1,6 +1,8 @@
-body {
+html, body {
+    height: 100%;
     margin: 0;
-    font-family: Arial, sans-serif;
+    scroll-behavior: smooth;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
 .splash-screen {
@@ -91,4 +93,102 @@ body {
 
 .section.contact {
     background-color: #dee2e6;
+}
+
+.splash-screen {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    z-index: 2000;
+    transition: opacity 0.6s ease;
+}
+.splash-screen.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Navbar layout adjustments */
+.navbar {
+    height: 56px;
+    padding: 0 1rem;
+}
+.menu-label {
+    margin-left: 0.5rem;
+    text-transform: lowercase;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Logo in navbar (small) */
+.navbar .logo {
+    display: block;
+}
+
+/* Side menu (hidden by default, slides in from left) */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 260px;
+    background: #f8f9fa;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.08);
+    transform: translateX(-100%);
+    transition: transform 0.35s ease;
+    z-index: 1500;
+    padding-top: 56px; /* leave room for fixed navbar */
+    overflow-y: auto;
+}
+.side-menu.open {
+    transform: translateX(0);
+}
+.side-menu ul {
+    list-style: none;
+    padding: 0.75rem 1rem;
+    margin: 0;
+}
+.side-menu li + li {
+    margin-top: 0.5rem;
+}
+.side-menu a {
+    display: block;
+    padding: 0.65rem 0.75rem;
+    color: #212529;
+    text-decoration: none;
+    border-radius: 4px;
+}
+.side-menu a:hover {
+    background: rgba(0,123,255,0.08);
+    color: #007bff;
+}
+
+/* Sections */
+.section {
+    padding: 100px 1.25rem;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* When side-menu is open, optionally dim the page (using a simple overlay) */
+.page-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.25);
+    z-index: 1400;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
+}
+.page-overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Responsive tweaks */
+@media (min-width: 768px) {
+    .menu-label { font-size: 1rem; }
 }

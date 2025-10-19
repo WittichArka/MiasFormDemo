@@ -1,4 +1,3 @@
-// ...existing code...
 document.addEventListener('DOMContentLoaded', function () {
     // Splash screen: show for 2s then fade out
     const splash = document.getElementById('splash-screen');

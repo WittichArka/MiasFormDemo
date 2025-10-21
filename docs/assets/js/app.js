@@ -85,4 +85,29 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
+    
+    const banner = document.getElementById("cookie-banner");
+	const acceptBtn = document.getElementById("accept-cookies");
+	const refuseBtn = document.getElementById("refuse-cookies");
+
+	// Vérifie si l'utilisateur a déjà choisi
+	const cookieChoice = localStorage.getItem("cookieConsent");
+
+	if (!cookieChoice) {
+		// Affiche la bannière seulement si aucun choix n’a été fait
+		banner.classList.remove("d-none");
+	}
+
+	acceptBtn?.addEventListener("click", () => {
+		localStorage.setItem("cookieConsent", "accepted");
+		banner.classList.add("d-none");
+		// Ici tu pourras activer des scripts externes si tu en ajoutes plus tard
+		console.log("Cookies acceptés (aucun cookie non essentiel actuellement)");
+	});
+
+	refuseBtn?.addEventListener("click", () => {
+		localStorage.setItem("cookieConsent", "refused");
+		banner.classList.add("d-none");
+		console.log("Cookies refusés");
+	});
 });

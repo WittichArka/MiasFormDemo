@@ -93,6 +93,52 @@
         <section id="contact" class="section">Adresse/Contact Section</section>
     </main>
 
+	<footer class="text-center p-3 bg-light">
+	  <p>© 2025 Ton Nom — Tous droits réservés</p>
+	  <p><a href="#mentions-legales" data-bs-toggle="modal">Mentions légales & Politique de confidentialité</a></p>
+	</footer>
+
+	<!-- Modal Mentions légales -->
+	<div class="modal fade" id="mentions-legales" tabindex="-1" aria-labelledby="mentionsLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered modal-lg">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title" id="mentionsLabel">Mentions légales & Politique de confidentialité</h5>
+			<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+		  </div>
+		  <div class="modal-body text-start">
+			<h6>Éditeur du site</h6>
+			<p>Nom : Arka Wittich<br>Email : contact@tondomaine.fr<br>Site personnel, non commercial.</p>
+
+			<h6>Hébergeur</h6>
+			<p>GitHub Pages — GitHub Inc.<br>
+			88 Colin P Kelly Jr St, San Francisco, CA 94107, États-Unis.</p>
+
+			<h6>Politique de confidentialité</h6>
+			<p>
+			  Ce site ne collecte aucune donnée personnelle et n’utilise aucun cookie à des fins publicitaires ou analytiques.<br>
+			  GitHub Pages peut collecter certaines données techniques (logs serveur, adresses IP) conformément à sa propre politique de confidentialité.
+			</p>
+		  </div>
+		</div>
+	  </div>
+	</div>
+
+	<!-- Cookie Banner -->
+	<div id="cookie-banner" class="cookie-banner bg-light shadow-lg border-top p-3 fixed-bottom d-none">
+	  <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
+		<div class="cookie-text mb-2 mb-md-0">
+		  <strong>🍪 Gestion des cookies :</strong>
+		  Ce site n’utilise actuellement <u>aucun cookie non essentiel</u>. 
+		  Si des services externes sont ajoutés (YouTube, Google Analytics, etc.), vous pourrez choisir d’accepter ou refuser leur dépôt.
+		</div>
+		<div class="cookie-buttons">
+		  <button id="accept-cookies" class="btn btn-primary btn-sm me-2">Tout accepter</button>
+		  <button id="refuse-cookies" class="btn btn-outline-secondary btn-sm">Tout refuser</button>
+		</div>
+	  </div>
+	</div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/app.js"></script>
 

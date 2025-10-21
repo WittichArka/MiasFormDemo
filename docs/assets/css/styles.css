@@ -188,12 +188,17 @@ html, body {
     pointer-events: auto;
 }
 
-/* Responsive tweaks */
-@media (min-width: 768px) {
-    .menu-label { font-size: 1rem; }
-}
-
 .carousel-caption,
 .carousel-caption h5 {
     color: var(--bs-primary) !important;
+}
+
+.cookie-banner {
+  z-index: 1080;
+  animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }

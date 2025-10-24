@@ -1,0 +1,117 @@
+/* =========
+   Thème Le Nid Solidaire
+   ========= */
+
+/* Palette principale (logo) */
+:root{
+  --brand-teal:  #0c9a93;    /* turquoise */
+  --brand-teal-700: #0a7f7a;
+  --brand-brown: #7b4a2a;    /* nid */
+  --brand-brown-700:#5f381d;
+  --brand-gold:  #f5c85b;    /* lumière */
+  --brand-cream: #f5f8f7;    /* fond doux */
+
+  /* Variables Bootstrap */
+  --bs-primary: var(--brand-teal);
+  --bs-primary-rgb: 12,154,147;
+  --bs-secondary: var(--brand-brown);
+  --bs-warning: var(--brand-gold);
+  --bs-body-bg: #ffffff;
+  --bs-body-color: #21313a;
+
+  /* Offset navbar fixe (mobile/desktop) */
+  --nav-offset: 72px;
+}
+
+/* Ajuste l’offset sur écrans ≥992px (navbar un peu plus haute) */
+@media (min-width: 992px){
+  :root{ --nav-offset: 80px; }
+}
+
+/* Base */
+html, body{scroll-behavior:smooth;}
+/* Ajoute un padding-top global pour que la 1re section ne soit pas masquée */
+body{ padding-top: var(--nav-offset); }
+
+/* Chaque section “ancrable” compense l’ancre et a min-height plein écran */
+.section-anchor{ scroll-margin-top: calc(var(--nav-offset) + 10px); }
+.section-fill{ min-height: calc(100vh - var(--nav-offset)); }
+
+/* Couleurs utilitaires */
+.bg-cream{background-color: var(--brand-cream)!important;}
+.bg-gold{background-color: var(--brand-gold)!important;}
+.text-teal{color: var(--brand-teal)!important;}
+.text-brown{color: var(--brand-brown)!important;}
+.link-teal{color: var(--brand-teal); text-decoration: none;}
+.link-teal:hover{color: var(--brand-teal-700); text-decoration: underline;}
+
+/* NAVBAR */
+.navbar .nav-link{
+  font-weight:600;
+  color:#36545e;
+}
+.navbar .nav-link:hover,
+.navbar .nav-link:focus{
+  color: var(--brand-teal);
+}
+.navbar-brand{color:#193f45;}
+.navbar-brand:hover{color: var(--brand-teal);}
+.brand-logo{background:#fff;}
+
+/* Boutons – variantes marque */
+.btn-primary{
+  --bs-btn-bg: var(--brand-teal);
+  --bs-btn-border-color: var(--brand-teal);
+  --bs-btn-hover-bg: var(--brand-teal-700);
+  --bs-btn-hover-border-color: var(--brand-teal-700);
+  --bs-btn-active-bg: var(--brand-teal-700);
+  --bs-btn-active-border-color: var(--brand-teal-700);
+}
+.btn-outline-brown{
+  --bs-btn-color: var(--brand-brown);
+  --bs-btn-border-color: var(--brand-brown);
+  --bs-btn-hover-bg: var(--brand-brown);
+  --bs-btn-hover-border-color: var(--brand-brown);
+  --bs-btn-hover-color: #fff;
+}
+
+/* Cartes / textes */
+.card{border-radius: .9rem;}
+.list-group-item{background: transparent;}
+h1,h2,h3{letter-spacing:.2px;}
+.lead{color:#36545e;}
+.border{border-color:rgba(0,0,0,.075)!important;}
+.shadow-sm{box-shadow:0 .25rem .75rem rgba(0,0,0,.06)!important;}
+
+/* HERO */
+.hero-logo{
+  max-width: 380px;
+  filter: drop-shadow(0 8px 22px rgba(12,154,147,.15));
+}
+
+/* Splash Screen */
+.splash-screen{
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  z-index: 2000;
+  transition: opacity .6s ease;
+}
+.splash-screen.fade-out{opacity:0; pointer-events:none;}
+
+/* Offcanvas */
+.offcanvas{ border-right: 0; }
+.offcanvas-header{ border-bottom: 1px solid rgba(0,0,0,.06); }
+.offcanvas .nav-link{
+  font-weight:600; color:#2c4a52; padding:.55rem 0;
+}
+.offcanvas .nav-link:hover{ color:var(--brand-teal); }
+
+/* Cookie banner */
+.cookie-banner{ z-index:1080; animation: slideUp .6s ease-out; }
+@keyframes slideUp{
+  from{transform:translateY(100%);opacity:0;}
+  to{transform:translateY(0);opacity:1;}
+}

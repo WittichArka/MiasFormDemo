@@ -1,146 +1,275 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Single Page Template</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ASBL Le Nid Solidaire</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Thème (écrase l’ancien CSS) -->
+  <link rel="stylesheet" href="assets/css/theme.css" />
 </head>
-<body>
+<body class="bg-body">
 
-    <!-- Splash Screen -->
-    <div id="splash-screen" class="splash-screen">
-        <svg id="splash-logo" width="120" height="120" viewBox="0 0 100 100" aria-hidden="true">
-            <polygon points="50,0 100,100 0,100" fill="#007bff"/>
-        </svg>
+  <!-- Splash Screen -->
+  <div id="splash-screen" class="splash-screen">
+    <img src="assets/images/logo-nid-solidaire.png" width="220" height="220" alt="ASBL Le Nid Solidaire - Logo" />
+  </div>
+
+  <!-- NAVBAR FIXE + OFFCANVAS -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+    <div class="container">
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuOffcanvas" aria-controls="menuOffcanvas" aria-label="Ouvrir le menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <a class="navbar-brand fw-semibold mx-auto mx-lg-0 d-flex align-items-center gap-2" href="#home">
+        <img src="assets/images/logo-nid-solidaire.png" alt="Logo" class="rounded-circle border brand-logo" width="36" height="36">
+        ASBL Le Nid Solidaire
+      </a>
+
+      <div class="d-none d-lg-flex">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#home">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">Qui sommes-nous ?</a></li>
+          <li class="nav-item"><a class="nav-link" href="#infos">Infos pratiques</a></li>
+          <li class="nav-item"><a class="nav-link" href="#activites">Nos activités</a></li>
+          <li class="nav-item"><a class="nav-link" href="#soutenir">Nous soutenir</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contacts">Contacts</a></li>
+        </ul>
+      </div>
     </div>
+  </nav>
 
-    <!-- Fixed Top Menu -->
-    <nav class="navbar navbar-light bg-light fixed-top">
-        <div class="d-flex align-items-center">
-            <button class="navbar-toggler" type="button" id="menu-toggle" aria-label="Toggle menu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
+  <!-- OFFCANVAS (menu latéral mobile) -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="menuOffcanvas" aria-labelledby="menuOffcanvasLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title d-flex align-items-center gap-2" id="menuOffcanvasLabel">
+        <img src="assets/images/logo-nid-solidaire.png" alt="Logo" width="32" height="32" class="rounded-circle border">
+        Menu
+      </h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Fermer"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" data-bs-dismiss="offcanvas" href="#home">Accueil</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-dismiss="offcanvas" href="#about">Qui sommes-nous ?</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-dismiss="offcanvas" href="#infos">Infos pratiques</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-dismiss="offcanvas" href="#activites">Nos activités</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-dismiss="offcanvas" href="#soutenir">Nous soutenir</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-dismiss="offcanvas" href="#contacts">Contacts</a></li>
+      </ul>
+    </div>
+  </div>
 
-        <a class="navbar-brand mx-auto" href="#home">Single Page Template</a>
-
-        <div class="d-flex align-items-center">
-            <svg class="logo" width="36" height="36" viewBox="0 0 100 100" aria-hidden="true">
-                <polygon points="50,0 100,100 0,100" fill="#007bff"/>
-            </svg>
-        </div>
-    </nav>
-
-    <!-- Side Menu -->
-    <aside id="side-menu" class="side-menu" aria-hidden="true">
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">À Propos</a></li>
-                <li><a href="#contact">Adresse/Contact</a></li>
-            </ul>
-        </nav>
-    </aside>
-
-    <!-- Sections -->
-    <main>
-        <section id="home" class="section">
-            <h2>Carousel Section</h2>
-
-            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-              <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></button>
-              </div>
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img class="d-block w-100" src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp" alt="First slide">
-                  <div class="carousel-caption d-none d-md-block">
-                    <h5>Home</h5>
-                    <p>Description du petit chez sois</p>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <img class="d-block w-100" src="https://mdbcdn.b-cdn.net/img/new/slides/042.webp" alt="Second slide">
-                  <div class="carousel-caption d-none d-md-block">
-                    <h5>À Propos</h5>
-                    <p>Description moi/projet/cv/autre</p>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <img class="d-block w-100" src="https://mdbcdn.b-cdn.net/img/new/slides/043.webp" alt="Third slide">
-                  <div class="carousel-caption d-none d-md-block">
-                    <h5>Contact</h5>
-                    <p>les contacts, formulaire ou autre.</p>
-                  </div>
-                </div>
-              </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
+  <main>
+    <!-- HOME / HERO -->
+    <section id="home" class="py-5 section-anchor section-fill">
+      <div class="container">
+        <div class="row align-items-center g-4">
+          <div class="col-12 col-lg-6 text-center text-lg-start">
+            <span class="badge bg-gold text-dark mb-3">Solidarité & Accueil</span>
+            <h1 class="display-5 fw-bold mb-3 text-teal">
+              Un toit, un futur — <span class="text-brown">ensemble</span> vers une solidarité humaine
+            </h1>
+            <p class="lead mb-4">
+              Nous accompagnons les familles précarisées dans leurs démarches, l’accès au logement
+              et la construction d’un avenir durable.
+            </p>
+            <div class="d-flex gap-2 justify-content-center justify-content-lg-start">
+              <a href="#soutenir" class="btn btn-primary btn-lg">Nous soutenir</a>
+              <a href="#about" class="btn btn-outline-brown btn-lg">Découvrir l’ASBL</a>
             </div>
+          </div>
+          <div class="col-12 col-lg-6 text-center">
+            <img src="assets/images/logo-nid-solidaire.png" class="img-fluid hero-logo" alt="Logo Le Nid Solidaire">
+          </div>
+        </div>
+      </div>
+    </section>
 
-        </section>
-        <section id="about" class="section">À Propos Section</section>
-        <section id="contact" class="section">Adresse/Contact Section</section>
-    </main>
+    <!-- ABOUT -->
+    <section id="about" class="py-5 bg-cream section-anchor section-fill">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-12">
+            <h2 class="h1 fw-bold mb-3 text-teal">Qui sommes-nous ?</h2>
+            <p class="mb-4">
+              <strong>Le Nid Solidaire</strong> est une ASBL dédiée à l’<em>accueil</em>, au <em>conseil</em> et à l’<em>accompagnement</em>
+              des familles en situation de précarité. Notre action s’appuie sur un réseau de partenaires pour sécuriser le quotidien et l’accès à un logement digne.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, deleniti.
+            </p>
+          </div>
 
-	<footer class="text-center p-3 bg-light">
-	  <p>© 2025 Ton Nom — Tous droits réservés</p>
-	  <p><a href="#mentions-legales" data-bs-toggle="modal">Mentions légales & Politique de confidentialité</a></p>
-	</footer>
+          <div class="col-12 col-lg-6">
+            <div class="card h-100 shadow-sm border-0">
+              <div class="card-body p-4">
+                <h3 class="h4 fw-semibold text-brown mb-3">Notre mission</h3>
+                <p class="mb-0">
+                  Accueil bienveillant, orientation, accompagnement social et administratif, avec une attention particulière
+                  aux besoins liés au logement. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+              </div>
+            </div>
+          </div>
 
-	<!-- Modal Mentions légales -->
-	<div class="modal fade" id="mentions-legales" tabindex="-1" aria-labelledby="mentionsLabel" aria-hidden="true">
-	  <div class="modal-dialog modal-dialog-centered modal-lg">
-		<div class="modal-content">
-		  <div class="modal-header">
-			<h5 class="modal-title" id="mentionsLabel">Mentions légales & Politique de confidentialité</h5>
-			<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-		  </div>
-		  <div class="modal-body text-start">
-			<h6>Éditeur du site</h6>
-			<p>Nom : Arka Wittich<br>Email : contact@tondomaine.fr<br>Site personnel, non commercial.</p>
+          <div class="col-12 col-lg-6">
+            <div class="card h-100 shadow-sm border-0">
+              <div class="card-body p-4">
+                <h3 class="h4 fw-semibold text-brown mb-3">Activités principales</h3>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item ps-0">Accueil et accompagnement personnalisé</li>
+                  <li class="list-group-item ps-0">Soutien dans les démarches administratives</li>
+                  <li class="list-group-item ps-0">Partenariats avec agences immobilières</li>
+                  <li class="list-group-item ps-0">Ateliers de formation</li>
+                  <li class="list-group-item ps-0">Ateliers de sensibilisation</li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-			<h6>Hébergeur</h6>
-			<p>GitHub Pages — GitHub Inc.<br>
-			88 Colin P Kelly Jr St, San Francisco, CA 94107, États-Unis.</p>
+        </div>
+      </div>
+    </section>
 
-			<h6>Politique de confidentialité</h6>
-			<p>
-			  Ce site ne collecte aucune donnée personnelle et n’utilise aucun cookie à des fins publicitaires ou analytiques.<br>
-			  GitHub Pages peut collecter certaines données techniques (logs serveur, adresses IP) conformément à sa propre politique de confidentialité.
-			</p>
-		  </div>
-		</div>
-	  </div>
-	</div>
+    <!-- INFOS PRATIQUES -->
+    <section id="infos" class="py-5 section-anchor section-fill">
+      <div class="container">
+        <h2 class="h1 fw-bold mb-4 text-teal">Infos pratiques</h2>
+        <div class="row g-4">
+          <div class="col-12 col-md-6 col-xl-4">
+            <div class="card h-100 shadow-sm border-0">
+              <div class="card-body">
+                <h3 class="h5 text-brown">Horaires</h3>
+                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. A compléter…</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-xl-4">
+            <div class="card h-100 shadow-sm border-0">
+              <div class="card-body">
+                <h3 class="h5 text-brown">Adresse</h3>
+                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. A compléter…</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-xl-4">
+            <div class="card h-100 shadow-sm border-0">
+              <div class="card-body">
+                <h3 class="h5 text-brown">Accès</h3>
+                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. A compléter…</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-	<!-- Cookie Banner -->
-	<div id="cookie-banner" class="cookie-banner bg-light shadow-lg border-top p-3 fixed-bottom d-none">
-	  <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
-		<div class="cookie-text mb-2 mb-md-0">
-		  <strong>🍪 Gestion des cookies :</strong>
-		  Ce site n’utilise actuellement <u>aucun cookie non essentiel</u>. 
-		  Si des services externes sont ajoutés (YouTube, Google Analytics, etc.), vous pourrez choisir d’accepter ou refuser leur dépôt.
-		</div>
-		<div class="cookie-buttons">
-		  <button id="accept-cookies" class="btn btn-primary btn-sm me-2">Tout accepter</button>
-		  <button id="refuse-cookies" class="btn btn-outline-secondary btn-sm">Tout refuser</button>
-		</div>
-	  </div>
-	</div>
+    <!-- ACTIVITÉS -->
+    <section id="activites" class="py-5 bg-cream section-anchor section-fill">
+      <div class="container">
+        <h2 class="h1 fw-bold mb-4 text-teal">Nos activités</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, nihil! Explicabo dolore, aspernatur
+          illum perspiciatis saepe adipisci inventore blanditiis doloremque.
+        </p>
+      </div>
+    </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/app.js"></script>
+    <!-- NOUS SOUTENIR -->
+    <section id="soutenir" class="py-5 section-anchor section-fill">
+      <div class="container">
+        <h2 class="h1 fw-bold mb-4 text-teal">Nous soutenir</h2>
+        <div class="row g-4">
+          <div class="col-12 col-lg-8">
+            <div class="card shadow-sm border-0">
+              <div class="card-body p-4">
+                <h3 class="h4 text-brown">Faire un don</h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat, accusantium. À compléter…
+                </p>
+                <a class="btn btn-primary" href="#contacts">Nous contacter</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-lg-4">
+            <div class="card border-0 bg-gold text-dark shadow-sm">
+              <div class="card-body">
+                <h3 class="h5 mb-2">Pourquoi votre soutien compte</h3>
+                <p class="mb-0">Chaque geste renforce notre capacité d’accueil et d’accompagnement.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- CONTACTS -->
+    <section id="contacts" class="py-5 bg-cream section-anchor section-fill">
+      <div class="container">
+        <h2 class="h1 fw-bold mb-4 text-teal">Contacts</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, sed. À compléter…
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="text-center p-4 bg-white border-top">
+    <p class="mb-1">© 2025 ASBL Le Nid Solidaire — Tous droits réservés</p>
+    <p class="mb-0">
+      <a href="#mentions-legales" data-bs-toggle="modal" class="link-teal">Mentions légales &amp; Politique de confidentialité</a>
+    </p>
+  </footer>
+
+  <!-- Modal Mentions légales -->
+  <div class="modal fade" id="mentions-legales" tabindex="-1" aria-labelledby="mentionsLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="mentionsLabel">Mentions légales &amp; Politique de confidentialité</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body text-start">
+          <h6>Éditeur du site</h6>
+          <p>Nom : Arka Wittich<br>Email : <a href="mailto:a.wittich@gmail.com">a.wittich@gmail.com</a><br>Site personnel, non commercial.</p>
+
+          <h6>Hébergeur</h6>
+          <p>GitHub Pages — GitHub Inc.<br>
+          88 Colin P Kelly Jr St, San Francisco, CA 94107, États-Unis.</p>
+
+          <h6>Politique de confidentialité</h6>
+          <p>
+            Ce site ne collecte aucune donnée personnelle et n’utilise aucun cookie à des fins publicitaires ou analytiques.<br>
+            GitHub Pages peut collecter certaines données techniques (logs serveur, adresses IP) conformément à sa propre politique de confidentialité.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bandeau cookies -->
+  <div id="cookie-banner" class="cookie-banner bg-white shadow-lg border-top p-3 fixed-bottom d-none">
+    <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
+      <div class="cookie-text">
+        <strong>🍪 Gestion des cookies :</strong>
+        Ce site n’utilise actuellement <u>aucun cookie non essentiel</u>.
+        Si des services externes sont ajoutés (YouTube, statistiques…), vous pourrez choisir d’accepter ou refuser leur dépôt.
+      </div>
+      <div class="d-flex gap-2">
+        <!-- Boutons optionnels d’acceptation/refus (si tu en veux plus tard) -->
+        <!-- <button id="accept-cookies" class="btn btn-primary btn-sm">Tout accepter</button>
+        <button id="refuse-cookies" class="btn btn-outline-secondary btn-sm">Tout refuser</button> -->
+        <button id="cookie-close" class="btn btn-outline-secondary btn-sm">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/app.js"></script>
 </body>
 </html>

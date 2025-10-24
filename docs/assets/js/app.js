@@ -1,113 +1,117 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Splash screen: show for 2s then fade out
-    const splash = document.getElementById('splash-screen');
-    if (splash) {
-        setTimeout(() => {
-            splash.classList.add('fade-out');
-            // Remove from DOM after transition
-            splash.addEventListener('transitionend', () => {
-                splash.remove();
-            }, { once: true });
-        }, 2000);
+  /* ===== Splash screen : 2s puis fade ===== */
+  const splash = document.getElementById('splash-screen');
+  if (splash) {
+    setTimeout(() => {
+      splash.classList.add('fade-out');
+      splash.addEventListener('transitionend', () => splash.remove(), { once: true });
+    }, 2000);
+  }
+
+  /* ===== Bandeau cookies : fermeture + (optionnel) accept/refuse ===== */
+  const banner = document.getElementById('cookie-banner');
+  const acceptBtn = document.getElementById('accept-cookies');
+  const refuseBtn = document.getElementById('refuse-cookies');
+  const closeBtn  = document.getElementById('cookie-close');
+
+  // Affiche si ni consentement ni fermeture n’ont été enregistrés
+  const cookieChoice = localStorage.getItem('cookieConsent');
+  const bannerClosed = localStorage.getItem('cookieBannerClosed');
+
+  if (banner && !cookieChoice && !bannerClosed) {
+    // Légère attente pour éviter l’apparition pendant le splash
+    setTimeout(() => banner.classList.remove('d-none'), 1200);
+  }
+
+  acceptBtn?.addEventListener('click', () => {
+    localStorage.setItem('cookieConsent', 'accepted');
+    banner?.classList.add('d-none');
+    console.log('Cookies acceptés (aucun cookie non essentiel actuellement)');
+  });
+
+  refuseBtn?.addEventListener('click', () => {
+    localStorage.setItem('cookieConsent', 'refused');
+    banner?.classList.add('d-none');
+    console.log('Cookies refusés');
+  });
+
+  closeBtn?.addEventListener('click', () => {
+    localStorage.setItem('cookieBannerClosed', '1');
+    banner?.classList.add('d-none');
+  });
+
+  /* ===== Ancrage avec offset (navbar fixe) + fermeture offcanvas ===== */
+  const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-offset')) || 80;
+
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', (ev) => {
+      const id = link.getAttribute('href');
+      if (!id || id === '#') return;
+      const target = document.querySelector(id);
+      if (!target) return;
+
+      ev.preventDefault();
+
+      const y = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+
+      // Ferme le offcanvas si ouvert (Bootstrap 5)
+      const oc = document.querySelector('.offcanvas.show');
+      if (oc) {
+        const instance = bootstrap.Offcanvas.getInstance(oc);
+        instance?.hide();
+      }
+    });
+  });
+
+  /* ===== Compat : ancien side menu (si présent dans le DOM) ===== */
+  const sideMenu  = document.getElementById('side-menu');
+  const menuToggle = document.getElementById('menu-toggle');
+
+  if (sideMenu) {
+    let overlay = document.querySelector('.page-overlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.className = 'page-overlay';
+      document.body.appendChild(overlay);
     }
-
-    const menuToggle = document.getElementById('menu-toggle');
-    const sideMenu = document.getElementById('side-menu');
-
-    // If sideMenu is missing, skip menu-related wiring
-    if (!sideMenu) {
-        console.warn('side-menu not found in DOM; menu features disabled.');
-        return;
-    }
-
-    // Overlay to close when clicked outside
-    let overlay = document.createElement('div');
-    overlay.className = 'page-overlay';
-    document.body.appendChild(overlay);
 
     function openMenu() {
-        if (!sideMenu) return;
-        sideMenu.classList.add('open');
-        sideMenu.setAttribute('aria-hidden', 'false');
-        overlay.classList.add('visible');
+      sideMenu.classList.add('open');
+      sideMenu.setAttribute('aria-hidden', 'false');
+      overlay.classList.add('visible');
     }
     function closeMenu() {
-        if (!sideMenu) return;
-        sideMenu.classList.remove('open');
-        sideMenu.setAttribute('aria-hidden', 'true');
-        overlay.classList.remove('visible');
+      sideMenu.classList.remove('open');
+      sideMenu.setAttribute('aria-hidden', 'true');
+      overlay.classList.remove('visible');
     }
     function toggleMenu() {
-        if (!sideMenu) return;
-        if (sideMenu.classList.contains('open')) closeMenu();
-        else openMenu();
+      sideMenu.classList.contains('open') ? closeMenu() : openMenu();
     }
 
-    if (menuToggle) {
-        menuToggle.addEventListener('click', function (e) {
-            e.stopPropagation();
-            toggleMenu();
-        });
-    } else {
-        console.warn('menu-toggle button not found in DOM.');
-    }
-
-    // Close when clicking overlay
+    menuToggle?.addEventListener('click', (e) => { e.stopPropagation(); toggleMenu(); });
     overlay.addEventListener('click', closeMenu);
-
-    // Close when clicking outside menu or hamburger (guard menuToggle)
-    document.addEventListener('click', function (e) {
-        const target = e.target;
-        const clickedInsideMenu = sideMenu.contains(target);
-        const clickedOnToggle = menuToggle ? menuToggle.contains(target) : false;
-        if (!clickedInsideMenu && !clickedOnToggle) {
-            closeMenu();
-        }
+    document.addEventListener('click', (e) => {
+      const clickedInsideMenu = sideMenu.contains(e.target);
+      const clickedOnToggle = menuToggle ? menuToggle.contains(e.target) : false;
+      if (!clickedInsideMenu && !clickedOnToggle) closeMenu();
     });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
 
-    // Close on Escape
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') closeMenu();
-    });
-
-    // Smooth scroll for side-menu links and close menu after click
+    // Liens internes du side-menu
     const sideLinks = document.querySelectorAll('#side-menu a[href^="#"]');
-    if (sideLinks && sideLinks.length) {
-        sideLinks.forEach(function (link) {
-            link.addEventListener('click', function (ev) {
-                ev.preventDefault();
-                const id = this.getAttribute('href');
-                const target = document.querySelector(id);
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-                closeMenu();
-            });
-        });
-    }
-    
-    const banner = document.getElementById("cookie-banner");
-	const acceptBtn = document.getElementById("accept-cookies");
-	const refuseBtn = document.getElementById("refuse-cookies");
-
-	// Vérifie si l'utilisateur a déjà choisi
-	const cookieChoice = localStorage.getItem("cookieConsent");
-
-	if (!cookieChoice) {
-		// Affiche la bannière seulement si aucun choix n’a été fait
-		banner.classList.remove("d-none");
-	}
-
-	acceptBtn?.addEventListener("click", () => {
-		localStorage.setItem("cookieConsent", "accepted");
-		banner.classList.add("d-none");
-		// Ici tu pourras activer des scripts externes si tu en ajoutes plus tard
-		console.log("Cookies acceptés (aucun cookie non essentiel actuellement)");
-	});
-
-	refuseBtn?.addEventListener("click", () => {
-		localStorage.setItem("cookieConsent", "refused");
-		banner.classList.add("d-none");
-		console.log("Cookies refusés");
-	});
+    sideLinks.forEach(link => {
+      link.addEventListener('click', (ev) => {
+        ev.preventDefault();
+        const id = link.getAttribute('href');
+        const target = document.querySelector(id);
+        if (target) {
+          const y = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+        closeMenu();
+      });
+    });
+  }
 });
